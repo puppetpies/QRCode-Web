@@ -1,0 +1,53 @@
+<html>
+<head>
+<h3>QRCode Maker</h3>
+</head>
+<body>
+# View
+<style type="text/css">
+ table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+ }
+ td {
+   border-width: 0;
+   border-style: none;
+   border-color: #0000ff;
+   border-collapse: collapse;
+   padding: 0;
+   margin: 0;
+   width: 10px;
+   height: 10px;
+ }
+ td.black { background-color: #000; }
+ td.white { background-color: #fff; }
+</style>
+
+<table width="100%" align="centre" border="0" cellpadding="0" cellspacing="0">
+<form action="/" method="POST">
+	<td>Enter Text to Make into QRCode: <input type="text" name="qrtext" id="qrtext"><input type="submit" name="submit" value="Go"></td>
+</form>
+</table>
+
+<% if @qrdata %>
+
+<table>
+ <% @qr.modules.each_index do |x| %>
+   <tr>
+   <% @qr.modules.each_index do |y| %>
+    <% if @qr.dark?(x,y) %>
+    <td class="black"/>
+    <% else %>
+    <td class="white"/>
+    <% end %>
+   <% end %>
+   </tr>
+ <% end %>
+</table>
+
+<% end %>
+
+</body>
+</html>
